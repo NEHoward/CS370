@@ -56,6 +56,7 @@ int get_arr_size(int rand)
  *      - Generate a random number. Map it to the range [100000 - 120000) using the 
  *      utility function 'get_iteration_count'.
  * 
+ * 
  * 2. For each iteration:
  *      2.a Generate an array size - Generate a random number and map it to the range [1000 - 1500) using
  *          the utility function 'get_arr_size'.
@@ -73,5 +74,29 @@ int get_arr_size(int rand)
  */
 int get_running_count()
 {
-    // TODO: Implement this method.
+    //Step 1: Generate the number of iterations
+    //start count at 0
+    int count = 0;
+    //call rand() to get a random number and map it to the range [100000 - 120000)
+    int iterations = get_iteration_count(rand());
+    //Step 2: For each iteration:
+    for (int i = 0; i < iterations; i++){
+        //2.a: Generate an array size - Generate a random number and map it to the range [1000 - 1500) || get_arr_size(rand())
+        int arr_size = get_arr_size(rand());
+        //2.b: Allocate memory for the array in the heap || malloc()
+        int *arr = (int *)malloc(arr_size * sizeof(int));
+        //2.c: Populate the array with random numbers
+        for(int j = 0; j<arr_size; j++){
+            arr[j] = rand();
+        }
+        //2.d: Get the median of the array using the function 'return_median' || return_median()
+        int median = return_median(arr, arr_size);
+        //2.e: Check if the median is divisible by 13 || modulo operator
+        if(median % 13 == 0){
+            count++;
+        }
+    
+    }
+    //2.f: Return the number of medians that were divisible by 13 
+    return count;
 }
