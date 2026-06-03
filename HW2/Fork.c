@@ -6,6 +6,8 @@
 #include <sys/wait.h>
 
 int main(){
+    //fork code from video lecture.
+
     pid_t pid = fork();
 
     if(pid < 0){
@@ -13,17 +15,17 @@ int main(){
         return 1;
     }
     else if(pid == 0){
-        printf("Child process beginning.\n");
         execlp("childTask", NULL);
         printf("Child process complete.\n");
     }
     else{
         printf("Parent process beginning.\n");
         int status;
+        printf("Coordinator: waiting for process [%d].\n", pid);
         wait(&status);
         int result = WEXITSTATUS(status);
-        printf("Child returned: %d\n", result);
-        printf("Parent process complete.\n");
+        printf("Coordinator: child process [%d] returned %d.\n", pid, result);
     }
+    printf("Coordinator: exiting.\n");
     return 0;
 }
