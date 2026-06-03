@@ -27,15 +27,15 @@ int main(int argc, char *argv[]){
         }
         else if(pid == 0){
             execlp("./checker", "checker", argv[1], argv[i], NULL);
-            printf("Child process complete.\n");
+            exit(1);
         }
         else{
-            printf("Parent process beginning.\n");
+            printf("Coordinator: forked process with ID %d.\n", pid);
             int status;
             printf("Coordinator: waiting for process [%d].\n", pid);
             wait(&status);
             int result = WEXITSTATUS(status);
-            printf("Coordinator: child process [%d] returned %d.\n", pid, result);
+            printf("Coordinator: child process %d returned %d.\n", pid, result);
         }
     }
     printf("Coordinator: exiting.\n");
