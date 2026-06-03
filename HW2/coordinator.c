@@ -26,19 +26,18 @@ int main(int argc, char *argv[]){
             return 1;
         }
         else if(pid == 0){
-            printf("Child process beginning.\n");
             execlp("./checker", "checker", argv[1], argv[i], NULL);
             printf("Child process complete.\n");
         }
         else{
             printf("Parent process beginning.\n");
             int status;
+            printf("Coordinator: waiting for process [%d].\n", pid);
             wait(&status);
             int result = WEXITSTATUS(status);
-            printf("Child returned: %d\n", result);
-            printf("Parent process complete.\n");
+            printf("Coordinator: child process [%d] returned %d.\n", pid, result);
         }
     }
-    
+    printf("Coordinator: exiting.\n");
     return 0;
 }
