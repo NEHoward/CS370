@@ -17,25 +17,28 @@
 #include <sys/resource.h>
 #include <sys/wait.h>
 
-int main(){
-    pid_t pid = fork();
+int main(int argc, char *argv[]){
+    for(int i = 2; i < argc; i++){
+        pid_t pid = fork();
 
-    if(pid < 0){
-        fprintf(stderr, "Fork Failed");
-        return 1;
+        if(pid < 0){
+            fprintf(stderr, "Fork Failed");
+            return 1;
+        }
+        else if(pid == 0){
+            printf("Child process beginning.\n");
+            execlp("./checker", "checker", argv[1], argv[i], NULL);
+            printf("Child process complete.\n");
+        }
+        else{
+            printf("Parent process beginning.\n");
+            int status;
+            wait(&status);
+            int result = WEXITSTATUS(status);
+            printf("Child returned: %d\n", result);
+            printf("Parent process complete.\n");
+        }
     }
-    else if(pid == 0){
-        printf("Child process beginning.\n");
-        execlp("childTask", NULL);
-        printf("Child process complete.\n");
-    }
-    else{
-        printf("Parent process beginning.\n");
-        int status;
-        wait(&status);
-        int result = WEXITSTATUS(status);
-        printf("Child returned: %d\n", result);
-        printf("Parent process complete.\n");
-    }
+    
     return 0;
 }

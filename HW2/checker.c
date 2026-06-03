@@ -5,8 +5,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[]){
+
+    pid_t pid = getpid();
 
     //create integers to hold the two arguments from the coordinator || atoi() converts the string arguments to integers
     int argONE = atoi(argv[1]);
@@ -14,15 +17,16 @@ int main(int argc, char *argv[]){
 
     // if argONE is zero, the operation is undefined. || return error message
     if(argONE == 0){
-        printf("Error: Division by zero is undefined.\n");
+        printf("Checker: Division by zero is undefined.\n");
     }
     // if argTwo is divisible by argOne, print the result. || modulo operator == 0
      else if(argTWO % argONE == 0){
-        printf("%d is divisible by %d.\n", argTWO, argONE); 
+        printf("Checker: %d *IS* divisible by %d.\n", argTWO, argONE);
+        return 1; 
     }
     // if argTwo is not divisible by argOne, print the result. || modulo operator != 0
     else{
-        printf("%d is not divisible by %d.\n", argTWO, argONE); 
+        printf("Checker: %d *IS NOT* divisible by %d.\n", argTWO, argONE); 
     }
 
     return 0;
