@@ -41,4 +41,4 @@ clean:
 	
 # Packages directory files into .zip file
 package:
-	zip -r Nick-Howard-HW2.zip Coordinator.c Checker.c Checker.h Makefile README.txt
+	zip -r NICK-HOWARD-HW2.zip Coordinator.c Checker.c Checker.h Makefile README.txt

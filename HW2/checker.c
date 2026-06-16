@@ -8,6 +8,15 @@
 #include <unistd.h>
 #include <sys/types.h>
 
+int checkDiv(int argONE, int argTWO){
+    //return 1 if argTWO is divisible by argONE, 0 otherwise. || modulo operator == 0
+    if (argTWO % argONE == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 int main(int argc, char *argv[]){
 
     pid_t pid = getpid();
@@ -17,7 +26,7 @@ int main(int argc, char *argv[]){
     int argTWO = atoi(argv[2]);
     
     printf("Checker process [%d]: Starting.\n", pid);
-    
+
     // if argONE is zero, the operation is undefined. || return error message
     if(argONE == 0){
         printf("Checker process [%d]: Division by zero is undefined.\n", pid);
