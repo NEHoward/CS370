@@ -8,14 +8,17 @@ class Consumer implements Runnable {
     }
 
     public void run() {
-        for (int i = 0; i < total; i++) {
-            try {
+        double cumulative = 0.0;
+        try{
+            for (int i = 0; i < total; i++) {
                 Double item = buffer.take();
-                System.out.println("Consumer took: " + item);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                break;
+                cumulative += item;
+                if (i % 100000 == 0) {
+                    System.out.println("Consumer took: " + cumulative);
+                }
             }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }

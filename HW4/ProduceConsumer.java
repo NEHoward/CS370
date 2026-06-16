@@ -1,4 +1,5 @@
 import java.util.Random;
+
 //1) Implement the FIFO Circular Buffer and ensure that the buffer can hold a maximum of 1000 items at a time. 
 //2) Consumer should wait if there are no items in the buffer 
 //3) Producer should wait if the buffer is full 
@@ -27,6 +28,7 @@ class BoundedBuffer {
     }
 
     public synchronized void put(Double item) throws InterruptedException {
+        //producer should wait if the buffer is full
         while (count == capacity) {
             wait();
         }
@@ -37,6 +39,7 @@ class BoundedBuffer {
     }
 
     public synchronized Double take() throws InterruptedException {
+        //consumer should wait if there are no items in the buffer
         while (count == 0){
             wait();
         }
@@ -50,6 +53,8 @@ class BoundedBuffer {
 
 public class ProduceConsumer {
     public static void main(String[] args) {
+        // Initialize the number of items to be produced and consumed,
+        // items set to 1000000 and the buffer capacity set to 1000
         final int ITEMS = 1000000;
         final int BUFFER_CAPACITY = 1000;
 
