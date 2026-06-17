@@ -1,4 +1,4 @@
-FILES = ProduceConsumer.java Worker.java
+FILES = ProduceConsumer.java Producer.java Consumer.java
 
 all: 
 	javac -g $(FILES)
@@ -7,4 +7,4 @@ run:
 clean:
 	rm *.class
 package:
-	zip -r NAME.zip $(FILES) Makefile README.txt
+	zip -r HW4.zip $(FILES) Makefile README.txt

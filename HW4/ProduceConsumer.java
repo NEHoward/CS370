@@ -1,4 +1,3 @@
-import java.util.Random;
 
 //1) Implement the FIFO Circular Buffer and ensure that the buffer can hold a maximum of 1000 items at a time. 
 //2) Consumer should wait if there are no items in the buffer 
