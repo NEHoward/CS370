@@ -34,7 +34,7 @@ class BoundedBuffer {
         buffer[tail] = item;
         tail = (tail + 1) % capacity;
         count++;
-        notifyAll();
+        notify();
     }
 
     public synchronized Double take() throws InterruptedException {

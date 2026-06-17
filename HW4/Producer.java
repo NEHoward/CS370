@@ -13,7 +13,7 @@ public class Producer implements Runnable {
         Random random = new Random();
         double cumulative = 0.0;  
         try {
-            for (int i = 0; i < total; i++) {
+            for (int i = 1; i <= total; i++) {
                 Double bufferItem = random.nextDouble() * 100.0;            
                     buffer.put(bufferItem);
                     cumulative += bufferItem;
