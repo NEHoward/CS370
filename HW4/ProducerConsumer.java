@@ -50,7 +50,7 @@ class BoundedBuffer {
     }
 }
 
-public class ProduceConsumer {
+public class ProducerConsumer {
     public static void main(String[] args) {
         // Initialize the number of items to be produced and consumed,
         // items set to 1000000 and the buffer capacity set to 1000
