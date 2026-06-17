@@ -1,9 +1,9 @@
-FILES = ProduceConsumer.java Producer.java Consumer.java
+FILES = ProducerConsumer.java Producer.java Consumer.java
 
 all: 
 	javac -g $(FILES)
 run:
-	java ProduceConsumer
+	java ProducerConsumer
 clean:
 	rm *.class
 package:
